@@ -14,7 +14,9 @@ Nemely esetben Assembly forraskodok is talalhatoak, ennek okai:
 
 #### 2.1.1 Altalanos megkozelites
 
-A cel egy egyszeru szobahomero megvalositasa volt, amely 5 percenkent "lekerdezi" a kulso homersekletet. Majd ezt az adatot egy LCD kijelzon megjeleniti. Kodreszlet:
+A cel egy egyszeru szobahomero megvalositasa volt, amely 5 percenkent "lekerdezi" a kulso homersekletet. Majd ezt az adatot egy LCD kijelzon megjeleniti.
+
+#### 2.1.2 Kodreszlet
 
 ```C
 // ...
@@ -42,3 +44,7 @@ void loop() {
 }
 // ...
 ```
+
+### 2.2 RGBLED "koktel"
+
+#### 2.2.1

@@ -173,10 +173,73 @@ setAngle:                   ;A potentiometer-bol erkezo ertek szerinti forgatas.
 RET
 ```
 
-### 2.4 "Zenebona" 🎸
+### 2.4 "Arturito" 🎸
 
 #### 2.4.1 Altalanos megkozelites
 
 A phototransistoron keresztul beolvasott analog jel lekepzese egy adott frekvenciatartomanyba. Majd a lekepzett ertek atadasa a piezo-nak, amely a kapott frekvencia erteken elkezd majd "csipogni". A "csipogas" az eppen beolvasott erteknek megfeleloen valtozik majd.
 
-Ilyesmit hallanank, amely egy jol ismert "klasszikust" idez majd elenk: [Star Wars](https://www.youtube.com/watch?v=2-BKjnAgNgY)
+Ilyesmit hallanank, amely egy jol ismert "klasszikust" idez majd elenk: [Star Wars Arturito](https://www.youtube.com/watch?v=2-BKjnAgNgY)
+
+#### 2.4.2 Kodreszlet Assembly megkozelitesben
+
+C-bol hívjuk a megirt assembly eljarasokat:
+
+```C
+// ...
+
+void loop() {
+    sensorValue = analogRead(A0);
+    pitch       = map(sensorValue, 0, 1023, 300, 4000);
+
+    prescalarMode = PRESCALAR_MODE_CLK_8;
+    frequency = F_CPU / pitch / 2 - 1;
+    if(frequency >= 65535) {
+        frequency     = F_CPU / pitch / 2 / 64 - 1;
+        prescalarMode = PRESCALAR_MODE_CLK_64;
+    }
+
+    toogleCount = 2 * frequency * 20 / 1000;
+
+    setPrescalarMode(prescalarMode);
+    setOCR1AValue(frequency);
+}
+
+// ...
+```
+
+Assembly kodreszletek:
+
+```assembly
+// ...
+
+setPrescalarMode:
+    CPI R24,0
+    BREQ setClock8
+    CPI R24,1
+    BREQ setClock64
+
+    setClock8:
+        CLR R16
+        LDI R16,0b00001010
+        STS TCCR1B,R16
+    RJMP retSetClock
+
+    setClock64:
+        CLR R16
+        LDI R16,0b00001011
+        STS TCCR1B,R16
+    retSetClock:
+RET
+
+setOCR1AValue:
+    STS OCR1AH,R25
+    STS OCR1AL,R24
+    CLR R16
+    LDI R16,0b00000010
+    STS TIMSK1,R16
+    SEI
+RET
+
+// ...
+```

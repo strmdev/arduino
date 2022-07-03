@@ -49,7 +49,7 @@ void loop() {
 
 #### 2.2.1 Altalanos megkozelites
 
-Adott 3 db phototransistor es 1 db RGBLED. A kornyezetbol vett adatok alapjan, olyan szint "keverunk" ki, majd jelenitunk meg az RGBLED-en, amelyek a phototransistoron keresztul erkeznek a LED egyes labaihoz.
+Adott 3 db phototransistor es 1 db RGBLED. A kornyezetbol vett adatok alapjan, olyan szint "keverunk" ki, majd jelenitunk meg az RGBLED-en, amelyek a phototransistoron keresztul erkeznek a LED egyes labaihoz. A szenzorokon keresztul beolvasott ertekeket a serial porton is megjelenitjuk.
 
 #### 2.2.2 Kodreszlet - Assembly megkozelitesben
 

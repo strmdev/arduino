@@ -121,3 +121,54 @@ RGBLEDOn:                                         ;Fenyerosseg beallitasa az RGB
 RET
 ; ...
 ```
+
+### 2.3 SM-S2309S servo motor vezerlese
+
+#### 2.3.1 Altalanos megkozelites
+
+A servo motor vezerlese volt itt fokuszban, hogy a rajta elhelyezett "propeller" mozogjon 180 fokban. Azt hogy eppen hany fokon "allunk", az eppen beolvasott ertek hatarozza meg, amely analog input formajaban erkezik kivulrol.
+
+#### 2.3.2 Kodreszlet Assembly megkozelitesben
+
+C-bol hívjuk az egyes assembly eljarasokat, amelyeket korabban mar megirtunk:
+```C
+// ...
+
+void setup() {
+    initMoodCue_ASM();
+}
+
+void loop() {
+    potentiometerValue = analogRead(POTENTIOMETER_PIN);
+    servoAngle         = map(potentiometerValue, ANALOG_VALUE_MIN, ANALOG_VALUE_MAX, SERVO_MIN_ANGLE, SERVO_MAX_ANGLE);
+
+    setAngle(servoAngle);
+    delay(20);
+}
+```
+
+Assembly eljarasok:
+
+```assembly
+#define __SFR_OFFSET 0x00
+#include "avr/io.h"
+
+.global initMoodCue_ASM     ;Inicializalas. C-bol valo hivashoz.
+.global setAngle            ;Angle beallitasa. C-bol valo hivashoz.
+
+initMoodCue_ASM:            ;Potentiometer: OUTPUT. PWM mod beallitasa: CTC.
+    SBI DDRB,0b00000001
+    RCALL setPWMModeToServo
+RET
+
+setPWMModeToServo:          ;PWM mod beallitasa: CTC.
+    LDI R20,0b10000011
+    STS TCCR1A,R20
+    LDI R20,0b00001100
+    STS TCCR1B,R20
+RET
+
+setAngle:                   ;A potentiometer-bol erkezo ertek szerinti forgatas.
+    STS OCR1A,R24
+RET
+```

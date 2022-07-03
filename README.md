@@ -47,4 +47,77 @@ void loop() {
 
 ### 2.2 RGBLED "koktel"
 
-#### 2.2.1
+#### 2.2.1 Altalanos megkozelites
+
+Adott 3 db phototransistor es 1 db RGBLED. A kornyezetbol vett adatok alapjan, olyan szint "keverunk" ki, majd jelenitunk meg az RGBLED-en, amelyek a phototransistoron keresztul erkeznek a LED egyes labaihoz.
+
+#### 2.2.2 Kodreszlet - Assembly megkozelitesben
+
+C-bol hívjuk az egyes assembly eljarasokat, amiket korabban megirtunk:
+
+
+```C
+// ...
+void setup() {
+    initColorMixingLamp();           //Inicializalas: portok es serial kommunikacio beallitasa.
+}
+
+void loop() {
+    A0_AnalogRead();                 /*A0 portrol erkezo analog jel:
+                                           - Beolvasasa.
+                                           - Digitalis jelle konvertalasa.*/
+    printMessage(A0_ANALOG_PORT_ID);     //- Kuldese OUTPUT-ra: - Serial port pl.: "Red value: 020".
+    RGBLEDOn(A0_ANALOG_PORT_ID);                              //- RGBLed "red" laba.
+// ...
+}
+```
+
+Fobb assembly eljarasok a megvalositas felso szintjen:
+
+```assembly
+; ...
+initColorMixingLamp:                              ;Inicializalo eljaras
+    RCALL setPorts
+    RCALL setSerialPortCommunication
+RET
+
+setPorts:                                         ;Portok beallitasa
+    SBI DDRB,0b00000011                           ;RGBLED "red laba" output
+    SBI DDRB,0b00000010                           ;RGBLED "blue laba" output
+    SBI DDRB,0b00000001                           ;RGBLED "green laba" output
+        
+    SBI DDRC,0b00000000                           ;"A0" analog port INPUT
+    SBI DDRC,0b00000001                           ;"A1" analog port INPUT
+    SBI DDRC,0b00000010                           ;"A2" analog port INPUT
+RET
+
+setSerialPortCommunication:                       ;Serial port kommunikacio beallitasa
+    CLR R24                                       
+    STS UCSR0A,R24
+    STS UBRR0H,R24
+    LDI R24,0b01100111                            ;Baud Rate = 9600 ((pow(10,6) / 9600) - 1 = 103)
+    STS UBRR0L,R24
+    LDI R24,1<<RXEN0 | 1<<TXEN0                   ;Tx (serial port write) es Rx (serial port read) engedelyezese
+    STS UCSR0B,R24
+    LDI R24,1<<UCSZ00 | 1<<UCSZ01                 ;Aszinkron mod, character frame = 8, 1 stop bit, no parity coding
+    STS UCSR0C,R24
+RET
+; ...
+```
+
+```assembly
+; ...
+A0_AnalogRead:                                    ;Az "A0" portrol erkezo analog jel digitalissa konvertalasa eljaras (RGBLed "red" lab)
+    RCALL setADC_A0
+    RCALL convertAnalogToDigital    
+RET
+
+printMessage:                                     ;"Red value: xxx" / "Blue value: yyy" / "Green value: zzz" uzenet megjelenitese
+    printMsg R24
+RET
+
+RGBLEDOn:                                         ;Fenyerosseg beallitasa az RGBLED "red"/"blue"/"green" laban a "LedOn" makron keresztul
+    LEDOn R24
+RET
+; ...
+```

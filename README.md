@@ -211,7 +211,7 @@ void loop() {
 Assembly kodreszletek:
 
 ```assembly
-// ...
+; ...
 
 setPrescalarMode:
     CPI R24,0
@@ -241,5 +241,5 @@ setOCR1AValue:
     SEI
 RET
 
-// ...
+; ...
 ```

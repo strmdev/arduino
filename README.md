@@ -10,7 +10,7 @@ Nemely esetben Assembly forraskodok is talalhatoak, ennek okai:
 - melyebben megszerettem volna erteni az [ATMEGA328P](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf) mukodesenek rejtelmeit
 - a magasabb szintu nyelveken egyszeruen megoldhato feladatok, itt esetenkent tobb kutatast, nehezebb megvalositast foglalnak magukban. Es ez motivalt.
 
-### 2.1 Szobahomero
+### 2.1 Szobahomero 🌡
 
 #### 2.1.1 Altalanos megkozelites
 
@@ -45,7 +45,7 @@ void loop() {
 // ...
 ```
 
-### 2.2 RGBLED "koktel"
+### 2.2 RGBLED "koktel" 🍸
 
 #### 2.2.1 Altalanos megkozelites
 
@@ -122,7 +122,7 @@ RET
 ; ...
 ```
 
-### 2.3 SM-S2309S servo motor vezerlese
+### 2.3 SM-S2309S servo motor vezerlese 🕹
 
 #### 2.3.1 Altalanos megkozelites
 
@@ -172,3 +172,11 @@ setAngle:                   ;A potentiometer-bol erkezo ertek szerinti forgatas.
     STS OCR1A,R24
 RET
 ```
+
+### 2.4 "Zenebona" 🎸
+
+#### 2.4.1 Altalanos megkozelites
+
+A phototransistoron keresztul beolvasott analog jel lekepzese egy adott frekvenciatartomanyba. Majd a lekepzett ertek atadasa a piezo-nak, amely a kapott frekvencia erteken elkezd majd "csipogni". A "csipogas" az eppen beolvasott erteknek megfeleloen valtozik majd.
+
+Ilyesmit hallanank, amely egy jol ismert "klasszikust" idez majd elenk: [Star Wars](https://www.youtube.com/watch?v=2-BKjnAgNgY)

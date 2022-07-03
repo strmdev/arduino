@@ -12,6 +12,8 @@ Nemely esetben Assembly forraskodok is talalhatoak, ennek okai:
 
 ### 2.1 Szobahomero 🌡
 
+![Szobahomero](images/szobahomero.png)
+
 #### 2.1.1 Altalanos megkozelites
 
 A cel egy egyszeru szobahomero megvalositasa volt, amely 5 percenkent "lekerdezi" a kulso homersekletet. Majd ezt az adatot egy LCD kijelzon megjeleniti.
@@ -46,6 +48,8 @@ void loop() {
 ```
 
 ### 2.2 RGBLED "koktel" 🍸
+
+![RGBLED "koktel"](images/koktel.png)
 
 #### 2.2.1 Altalanos megkozelites
 
@@ -124,6 +128,8 @@ RET
 
 ### 2.3 SM-S2309S servo motor vezerlese 🕹
 
+![Servo motor](images/servo_motor.png)
+
 #### 2.3.1 Altalanos megkozelites
 
 A servo motor vezerlese volt itt fokuszban, hogy a rajta elhelyezett "propeller" mozogjon 180 fokban. Azt hogy eppen hany fokon "allunk", az eppen beolvasott ertek hatarozza meg, amely analog input formajaban erkezik kivulrol.
@@ -174,6 +180,8 @@ RET
 ```
 
 ### 2.4 "Arturito" 🎸
+
+![Arturito](images/arturito.png)
 
 #### 2.4.1 Altalanos megkozelites
 

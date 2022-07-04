@@ -2,7 +2,7 @@
 
 ## 1. Motivacio
 
-A webes alkalmazasok vilagabol "kiszakadva" uj teruleteket szerettem volna felfedezni. Igy esett a valasztasom az [Arduino](https://www.arduino.cc/en/hardware) hardware (ATMEGA328P) programozas es a benne rejlo lehetosegek alkalmazasara mini projekteken keresztul.
+A webes alkalmazasok vilagabol "kiszakadva" uj teruleteket szerettem volna felfedezni. Igy esett a valasztasom az [Arduino UNO R3](https://www.arduino.cc/en/hardware) hardware programozas es a benne rejlo lehetosegek alkalmazasara mini projekteken keresztul.
 
 ## 2. Hobbi projektek
 
@@ -11,6 +11,8 @@ Nemely esetben Assembly forraskodok is talalhatoak, ennek okai:
 - a magasabb szintu nyelveken egyszeruen megoldhato feladatok, itt esetenkent tobb kutatast, nehezebb megvalositast foglalnak magukban. Es ez motivalt.
 
 ### 2.1 Szobahomero 🌡
+
+Forraskod megtekintheto [ide kattintva](/thermometer).
 
 ![Szobahomero](images/thermometer.png)
 
@@ -49,6 +51,8 @@ void loop() {
 
 ### 2.2 RGBLED "koktel" 🍸
 
+Forraskod megtekintheto [ide kattintva](/rgbled_cocktail).
+
 ![RGBLED "koktel"](images/rgbled_cocktail.png)
 
 #### 2.2.1 Altalanos megkozelites
@@ -57,7 +61,7 @@ Adott 3 db phototransistor es 1 db RGBLED. A kornyezetbol vett adatok alapjan, o
 
 #### 2.2.2 Kodreszlet - Assembly megkozelitesben
 
-C-bol hívjuk az egyes assembly eljarasokat, amiket korabban megirtunk:
+C-bol hívjuk az egyes assembly eljarasokat:
 
 
 ```C
@@ -128,11 +132,13 @@ RET
 
 ### 2.3 SM-S2309S servo motor vezerlese 🕹
 
+Forraskod megtekintheto [ide kattintva](/servo_motor).
+
 ![Servo motor](images/servo_motor.png)
 
 #### 2.3.1 Altalanos megkozelites
 
-A servo motor vezerlese volt itt fokuszban, hogy a rajta elhelyezett "propeller" mozogjon 180 fokban. Azt hogy eppen hany fokon "allunk", az eppen beolvasott ertek hatarozza meg, amely analog input formajaban erkezik kivulrol.
+A servo motor vezerlese volt itt fokuszban, hogy a rajta elhelyezett "propeller" mozogjon 180 fokban oda-vissza. Azt hogy eppen hany fokon "allunk", az eppen beolvasott ertek hatarozza meg, amely analog input formajaban erkezik egy potentiometer-en keresztul.
 
 #### 2.3.2 Kodreszlet Assembly megkozelitesben
 
@@ -181,6 +187,8 @@ RET
 
 ### 2.4 "Arturito" 🎸
 
+Forraskod megtekintheto [ide kattintva](arturito/).
+
 ![Arturito](images/arturito.png)
 
 #### 2.4.1 Altalanos megkozelites
@@ -191,7 +199,7 @@ Ilyesmit hallanank, amely egy jol ismert "klasszikust" idez majd elenk: [Star Wa
 
 #### 2.4.2 Kodreszlet Assembly megkozelitesben
 
-C-bol hívjuk a megirt assembly eljarasokat:
+C-bol hívjuk majd az assembly eljarasokat:
 
 ```C
 // ...

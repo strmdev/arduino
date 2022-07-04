@@ -1,5 +1,5 @@
 extern "C" {
-    void initMoodCue_ASM();
+    void initServoMotor_ASM();
     void setAngle(byte);
 }
 
@@ -13,7 +13,7 @@ int potentiometerValue = 0;
 byte servoAngle        = 0;
 
 void setup() {
-    initMoodCue_ASM();
+    initServoMotor_ASM();
 }
 
 void loop() {

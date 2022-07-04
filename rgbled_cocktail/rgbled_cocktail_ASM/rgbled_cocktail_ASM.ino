@@ -1,5 +1,5 @@
 extern "C" {                         //Assembly hivashoz
-    void initColorMixingLamp(); 
+    void initRGBLEDCocktail(); 
     void A0_AnalogRead();
     void A1_AnalogRead();
     void A2_AnalogRead();
@@ -14,7 +14,7 @@ extern "C" {                         //Assembly hivashoz
 #define A2_ANALOG_PORT_ID 2
 
 void setup() {
-    initColorMixingLamp();           //Inicializalas: portok es serial kommunikacio beallitasa.
+    initRGBLEDCocktail();            //Inicializalas: portok es serial kommunikacio beallitasa.
 }
 
 void loop() {

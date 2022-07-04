@@ -1,7 +1,7 @@
 #define __SFR_OFFSET 0x00
 #include "avr/io.h"
 
-.global initColorMixingLamp                       ;Inicializalo eljaras
+.global initRGBLEDCocktail                        ;Inicializalo eljaras
 .global A0_AnalogRead                             ;Az "A0" portrol erkezo analog jel digitalissa konvertalasa eljaras (RGBLed "red" lab)
 .global A1_AnalogRead                             ;Az "A1" portrol erkezo analog jel digitalissa konvertalasa eljaras (RGBLed "blue" lab)
 .global A2_AnalogRead                             ;Az "A2" portrol erkezo analog jel digitalissa konvertalasa eljaras (RGBLed "green" lab)
@@ -19,7 +19,7 @@ blueMessage:                                      ;Program memory-ban tarolt uze
     .byte 0b00001101                              ;13 byte
     .asciz "Blue value: "
    
-initColorMixingLamp:                              ;Inicializalo eljaras
+initRGBLEDCocktail:                               ;Inicializalo eljaras
     RCALL setPorts
     RCALL setSerialPortCommunication
 RET

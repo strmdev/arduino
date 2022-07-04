@@ -12,7 +12,7 @@ Nemely esetben Assembly forraskodok is talalhatoak, ennek okai:
 
 ### 2.1 Szobahomero 🌡
 
-![Szobahomero](images/szobahomero.png)
+![Szobahomero](images/thermometer.png)
 
 #### 2.1.1 Altalanos megkozelites
 
@@ -49,7 +49,7 @@ void loop() {
 
 ### 2.2 RGBLED "koktel" 🍸
 
-![RGBLED "koktel"](images/koktel.png)
+![RGBLED "koktel"](images/rgbled_cocktail.png)
 
 #### 2.2.1 Altalanos megkozelites
 
@@ -63,7 +63,7 @@ C-bol hívjuk az egyes assembly eljarasokat, amiket korabban megirtunk:
 ```C
 // ...
 void setup() {
-    initColorMixingLamp();           //Inicializalas: portok es serial kommunikacio beallitasa.
+    initRGBLEDCocktail();            //Inicializalas: portok es serial kommunikacio beallitasa.
 }
 
 void loop() {
@@ -80,7 +80,7 @@ Fobb assembly eljarasok a megvalositas felso szintjen:
 
 ```assembly
 ; ...
-initColorMixingLamp:                              ;Inicializalo eljaras
+initRGBLEDCocktail:                               ;Inicializalo eljaras
     RCALL setPorts
     RCALL setSerialPortCommunication
 RET
@@ -141,7 +141,7 @@ C-bol hívjuk az egyes assembly eljarasokat, amelyeket korabban mar megirtunk:
 // ...
 
 void setup() {
-    initMoodCue_ASM();
+    initServoMotor_ASM();
 }
 
 void loop() {
@@ -159,10 +159,10 @@ Assembly eljarasok:
 #define __SFR_OFFSET 0x00
 #include "avr/io.h"
 
-.global initMoodCue_ASM     ;Inicializalas. C-bol valo hivashoz.
+.global initServoMotor_ASM  ;Inicializalas. C-bol valo hivashoz.
 .global setAngle            ;Angle beallitasa. C-bol valo hivashoz.
 
-initMoodCue_ASM:            ;Potentiometer: OUTPUT. PWM mod beallitasa: CTC.
+initServoMotor_ASM:         ;Potentiometer: OUTPUT. PWM mod beallitasa: CTC.
     SBI DDRB,0b00000001
     RCALL setPWMModeToServo
 RET

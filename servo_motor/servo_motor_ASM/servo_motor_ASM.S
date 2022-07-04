@@ -1,10 +1,10 @@
 #define __SFR_OFFSET 0x00
 #include "avr/io.h"
 
-.global initMoodCue_ASM     ;Inicializalas. C-bol valo hivashoz.
+.global initServoMotor_ASM  ;Inicializalas. C-bol valo hivashoz.
 .global setAngle            ;Angle beallitasa. C-bol valo hivashoz.
 
-initMoodCue_ASM:            ;Potentiometer: OUTPUT. PWM mod beallitasa: CTC.
+initServoMotor_ASM:         ;Potentiometer: OUTPUT. PWM mod beallitasa: CTC.
     SBI DDRB,0b00000001
     RCALL setPWMModeToServo
 RET
